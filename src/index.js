@@ -1,4 +1,4 @@
-import { getTodos, saveTodos, createTodo, toggleTodo, removeTodo } from './todo'
+import { getTodos, loadTodos, saveTodos, createTodo, toggleTodo, removeTodo } from './todo'
 import { getFilters, setFilters, getFilteredTodos } from './filter'
 import { generateSummaryDOM, generateTodoDOM, renderTodos } from './view'
 
@@ -10,13 +10,11 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
     renderTodos()
 })
 
-
 // hide completed filtering
 document.querySelector('#hide-completed').addEventListener('change', (e) => {
     setFilters({ hideCompleted: e.target.checked })
     renderTodos()
 })
-
 
 // add todo
 document.querySelector('#add-todo').addEventListener('submit', (e) => {
@@ -25,6 +23,14 @@ document.querySelector('#add-todo').addEventListener('submit', (e) => {
     const text = e.target.elements.addTodo.value.trim()
     if (text.length > 0) {
         createTodo(text)
+        renderTodos()
+    }
+})
+
+// local storage watcher
+window.addEventListener('storage', (e) => {
+    if (e.key === 'todos') {
+        loadTodos()
         renderTodos()
     }
 })
