@@ -14,4 +14,35 @@ const generateSummaryDOM = (todos) => {
 }
 
 
-export { generateSummaryDOM }
+const generateTodoDOM = ({ text, completed }) => {
+
+    const todoEl = document.createElement('label')
+    todoEl.classList.add('list-item')
+
+    //Setup container
+    const containerEl = document.createElement('div')
+    containerEl.classList.add('list-item__container')
+    todoEl.appendChild(containerEl)
+
+    // Setup check
+    const checkEl = document.createElement('input')
+    checkEl.setAttribute('type', 'checkbox')
+    checkEl.checked = completed
+    containerEl.appendChild(checkEl)
+
+    // Setup text
+    const textEl = document.createElement('span')
+    textEl.textContent = text
+    containerEl.appendChild(textEl)
+
+    // Setup remove button
+    const removeEl = document.createElement('button')
+    removeEl.classList.add('button', 'button--text')
+    removeEl.textContent = 'remove'
+    todoEl.appendChild(removeEl)
+
+    return todoEl
+}
+
+
+export { generateSummaryDOM, generateTodoDOM }
