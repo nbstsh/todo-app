@@ -25,6 +25,8 @@ document.querySelector('#add-todo').addEventListener('submit', (e) => {
         createTodo(text)
         renderTodos()
     }
+
+    e.target.elements.addTodo.value = ''
 })
 
 // local storage watcher
