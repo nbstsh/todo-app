@@ -53,6 +53,13 @@ const generateTodoDOM = (todo) => {
     return todoEl
 }
 
+const generateEmptyMessageEl = () => {
+    const emptyMessageEl = document.createElement('p')
+    emptyMessageEl.classList.add('empty-message')
+    emptyMessageEl.textContent = 'There are no to-do to show'
+    return emptyMessageEl
+}
+
 const renderTodos = () => {
     const todosEl = document.querySelector('#todos')
     todosEl.innerHTML = ''
@@ -63,9 +70,13 @@ const renderTodos = () => {
     todosEl.appendChild(generateSummaryDOM(todos))
 
     // Setup todo list
-    getFilteredTodos(todos).forEach((todo) => {
-        todosEl.appendChild(generateTodoDOM(todo))
-    })
+    if (todos.length > 0) {
+        getFilteredTodos(todos).forEach((todo) => {
+            todosEl.appendChild(generateTodoDOM(todo))
+        })
+    } else {
+        todosEl.appendChild(generateEmptyMessageEl())
+    }
 }
 
 
