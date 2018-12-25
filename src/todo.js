@@ -1,3 +1,5 @@
+import uuidv4 from 'uuidv4'
+
 /*
 
 todo object
@@ -23,7 +25,17 @@ const saveTodo = () => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+const createTodo = (text) => {
+    todos.push({
+        id: uuidv4(),
+        text,
+        completed: false
+    })
+    saveTodo()
+}
+
 loadTodos()
 
 
-export { getTodos, saveTodo }
+export { getTodos, saveTodo, createTodo }
+
