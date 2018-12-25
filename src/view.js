@@ -1,5 +1,5 @@
-import { getTodos, saveTodos, createTodo, toggleTodo, removeTodo } from './todo'
-import { getFilters, setFilters, getFilteredTodos } from './filter'
+import { getTodos } from './todo'
+import { getFilteredTodos } from './filter'
 
 
 const generateSummaryDOM = (todos) => {
@@ -44,5 +44,20 @@ const generateTodoDOM = ({ text, completed }) => {
     return todoEl
 }
 
+const renderTodos = () => {
+    const todosEl = document.querySelector('#todos')
+    todosEl.innerHTML = ''
 
-export { generateSummaryDOM, generateTodoDOM }
+    const todos = getTodos()
+
+    // Setup summary 
+    todosEl.appendChild(generateSummaryDOM(todos))
+
+    // Setup todo list
+    getFilteredTodos(todos).forEach((todo) => {
+        todosEl.appendChild(generateTodoDOM(todo))
+    })
+}
+
+
+export { generateSummaryDOM, generateTodoDOM, renderTodos }
