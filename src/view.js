@@ -1,4 +1,4 @@
-import { getTodos, toggleTodo } from './todo'
+import { getTodos, toggleTodo, removeTodo } from './todo'
 import { getFilteredTodos } from './filter'
 
 
@@ -43,6 +43,10 @@ const generateTodoDOM = (todo) => {
     const removeEl = document.createElement('button')
     removeEl.classList.add('button', 'button--text')
     removeEl.textContent = 'remove'
+    removeEl.addEventListener('click', (e) => {
+        removeTodo(todo.id)
+        renderTodos()
+    })
     todoEl.appendChild(removeEl)
 
 
