@@ -9,3 +9,10 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
     setFilters({ searchText: e.target.value })
     renderTodos()
 })
+
+
+// hide completed filtering
+document.querySelector('#hide-completed').addEventListener('change', (e) => {
+    setFilters({ hideCompleted: e.target.checked })
+    renderTodos()
+})
