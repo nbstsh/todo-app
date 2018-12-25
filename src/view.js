@@ -1,4 +1,4 @@
-import { getTodos } from './todo'
+import { getTodos, toggleTodo, removeTodo } from './todo'
 import { getFilteredTodos } from './filter'
 
 
@@ -14,7 +14,7 @@ const generateSummaryDOM = (todos) => {
 }
 
 
-const generateTodoDOM = ({ text, completed }) => {
+const generateTodoDOM = (todo) => {
 
     const todoEl = document.createElement('label')
     todoEl.classList.add('list-item')
@@ -27,19 +27,28 @@ const generateTodoDOM = ({ text, completed }) => {
     // Setup check
     const checkEl = document.createElement('input')
     checkEl.setAttribute('type', 'checkbox')
-    checkEl.checked = completed
+    checkEl.checked = todo.completed
+    checkEl.addEventListener('change', (e) => {
+        toggleTodo(todo.id)
+        renderTodos()
+    })
     containerEl.appendChild(checkEl)
 
     // Setup text
     const textEl = document.createElement('span')
-    textEl.textContent = text
+    textEl.textContent = todo.text
     containerEl.appendChild(textEl)
 
     // Setup remove button
     const removeEl = document.createElement('button')
     removeEl.classList.add('button', 'button--text')
     removeEl.textContent = 'remove'
+    removeEl.addEventListener('click', (e) => {
+        removeTodo(todo.id)
+        renderTodos()
+    })
     todoEl.appendChild(removeEl)
+
 
     return todoEl
 }
