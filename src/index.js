@@ -16,3 +16,15 @@ document.querySelector('#hide-completed').addEventListener('change', (e) => {
     setFilters({ hideCompleted: e.target.checked })
     renderTodos()
 })
+
+
+// add todo
+document.querySelector('#add-todo').addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const text = e.target.elements.addTodo.value.trim()
+    if (text.length > 0) {
+        createTodo(text)
+        renderTodos()
+    }
+})
