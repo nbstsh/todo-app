@@ -21,7 +21,7 @@ const loadTodos = () => {
     todos = todosJson ? JSON.parse(todosJson) : []
 }
 
-const saveTodo = () => {
+const saveTodos = () => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
@@ -31,11 +31,21 @@ const createTodo = (text) => {
         text,
         completed: false
     })
-    saveTodo()
+    saveTodos()
 }
+
+const toggleTodo = (id) => {
+    const todo = todos.find((todo) => todo.id === id)
+    if (todo) {
+        todo.completed = !todo.completed
+        saveTodos()
+    }
+}
+
+
 
 loadTodos()
 
 
-export { getTodos, saveTodo, createTodo }
+export { getTodos, saveTodos, createTodo, toggleTodo }
 
