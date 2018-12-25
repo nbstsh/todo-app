@@ -14,4 +14,13 @@ const setFilters = ({ searchText, hideCompleted}) => {
     }
 }
 
-export { getFilters, setFilters }
+const getFilteredTodos = (todos) => {
+    return todos.filter(({ text, completed }) => {
+        const textMatch = text.toLowerCase().includes(filters.searchText.toLowerCase())
+        const completedMatch = !filters.hideCompleted || !completed
+        return textMatch && completedMatch
+    })
+} 
+
+
+export { getFilters, setFilters, getFilteredTodos }
