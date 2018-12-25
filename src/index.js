@@ -1,6 +1,6 @@
-import { getTodos, loadTodos, saveTodos, createTodo, toggleTodo, removeTodo } from './todo'
-import { getFilters, setFilters, getFilteredTodos } from './filter'
-import { generateSummaryDOM, generateTodoDOM, renderTodos } from './view'
+import { loadTodos, createTodo} from './todo'
+import { setFilters } from './filter'
+import { renderTodos } from './view'
 
 renderTodos()
 
