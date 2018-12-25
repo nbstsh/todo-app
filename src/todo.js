@@ -16,15 +16,18 @@ let todos = []
 
 const getTodos = () => todos
 
+// load todos from local storage
 const loadTodos = () => {
     const todosJson = localStorage.getItem('todos')
     todos = todosJson ? JSON.parse(todosJson) : []
 }
 
+// save todo to local storage
 const saveTodos = () => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// add new todo to todo list and save 
 const createTodo = (text) => {
     todos.push({
         id: uuidv4(),
@@ -34,6 +37,7 @@ const createTodo = (text) => {
     saveTodos()
 }
 
+// toggle completed status of todo
 const toggleTodo = (id) => {
     const todo = todos.find((todo) => todo.id === id)
     if (todo) {
@@ -42,6 +46,7 @@ const toggleTodo = (id) => {
     }
 }
 
+// remove todo from todo list
 const removeTodo = (id) => {
     const index = todos.findIndex((todo) => todo.id === id)
     if (index > -1) {
@@ -49,7 +54,6 @@ const removeTodo = (id) => {
         saveTodos()
     }
 }
-
 
 
 loadTodos()
